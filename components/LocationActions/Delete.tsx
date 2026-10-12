@@ -35,16 +35,14 @@ export function DeleteLocation({
             <Info className="mt-1 flex-shrink-0" size="1rem" />
 
             <div className="flex flex-col gap-1">
-              <p className="m-0">
-                Are you sure you want to delete this location?
-              </p>
+              <p className="m-0">Diesen Ort wirklich löschen?</p>
               <p className="m-0 caption">
-                (The Pokémon caught at this location will be deleted as well)
+                (Die hier gefangenen Pokémon werden ebenfalls gelöscht)
               </p>
 
               <div className="flex gap-1 justify-end mt-1">
                 <Button className="outline" onClick={hide}>
-                  No
+                  Nein
                 </Button>
                 <Button
                   className="danger"
@@ -53,7 +51,7 @@ export function DeleteLocation({
                     hide();
                   }}
                 >
-                  Yes
+                  Ja
                 </Button>
               </div>
             </div>
@@ -66,7 +64,7 @@ export function DeleteLocation({
     >
       <span>
         <Button className={cn("text danger no-underline")} onClick={show}>
-          Delete
+          Löschen
         </Button>
       </span>
     </Tippy>

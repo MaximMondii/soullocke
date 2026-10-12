@@ -45,7 +45,7 @@ export function MovePokemonToTeam({
 
   return (
     <Modal {...{ visible, onCancel }}>
-      <p className="text-lg mt-0">Add {pokemonToSwitchNames} to your teams?</p>
+      <p className="text-lg mt-0">{pokemonToSwitchNames} ins Team aufnehmen?</p>
 
       <div className="flex flex-col center">
         <PokemonGroup marginBottom={12}>
@@ -54,9 +54,9 @@ export function MovePokemonToTeam({
           )}
         </PokemonGroup>
 
-        {isNoSwapsNeeded && <p>No swaps necessary to add</p>}
+        {isNoSwapsNeeded && <p>Kein Tausch nötig</p>}
         {!isNoSwapsNeeded && (
-          <p>Need to swap out {numSwapsNeeded} pair(s) of Pokemon</p>
+          <p>{numSwapsNeeded} Paar(e) Pokémon müssen ausgetauscht werden</p>
         )}
         {!isNoSwapsNeeded && (
           <div className={styles.party}>
@@ -78,14 +78,14 @@ export function MovePokemonToTeam({
 
       <div className="flex gap-2 justify-end items-center">
         <Button key="cancel" className="outline" onClick={cancel}>
-          Cancel
+          Abbrechen
         </Button>
         <Button
           key="add"
           disabled={!isNoSwapsNeeded && !isAddable}
           onClick={add}
         >
-          {isNoSwapsNeeded ? "Add" : "Swap"}
+          {isNoSwapsNeeded ? "Aufnehmen" : "Tauschen"}
         </Button>
       </div>
     </Modal>

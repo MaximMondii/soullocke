@@ -43,7 +43,7 @@ export function BoxView() {
 
     // Can't add to team if it's already full
     if (team.length >= 6 && to === "team") {
-      toast.warn("You already have 6 Pokémon on your team!");
+      toast.warn("Euer Team hat schon 6 Pokémon!");
       return;
     }
 
@@ -89,7 +89,7 @@ export function BoxView() {
                     </Draggable>
                   ))}
                 </div>
-                {!team?.length && <p className="caption">None</p>}
+                {!team?.length && <p className="caption">Keine</p>}
               </div>
             )}
           </Droppable>
@@ -126,7 +126,7 @@ export function BoxView() {
                       </Draggable>
                     ))}
                   </div>
-                  {!box?.length && <p className="caption">None</p>}
+                  {!box?.length && <p className="caption">Keine</p>}
                 </div>
               )}
             </Droppable>
@@ -139,7 +139,7 @@ export function BoxView() {
                   ref={p.innerRef}
                   key={p.droppableProps["data-rbd-droppable-id"]}
                 >
-                  <div className="teko uppercase text-xl p-yellow">Daycare</div>
+                  <div className="teko uppercase text-xl p-yellow">Pension</div>
                   <div className={styles.container}>
                     {daycare?.map((d, i) => (
                       <Draggable
@@ -161,7 +161,7 @@ export function BoxView() {
                         )}
                       </Draggable>
                     ))}
-                    {!daycare?.length && <p className="caption">None</p>}
+                    {!daycare?.length && <p className="caption">Keine</p>}
                   </div>
                 </div>
               )}
@@ -175,7 +175,7 @@ export function BoxView() {
                   ref={p.innerRef}
                   key={p.droppableProps["data-rbd-droppable-id"]}
                 >
-                  <div className="teko uppercase text-xl">Grave</div>
+                  <div className="teko uppercase text-xl">Grab</div>
                   <div className={styles.container}>
                     {grave?.map((d, i) => (
                       <Draggable
@@ -198,7 +198,7 @@ export function BoxView() {
                       </Draggable>
                     ))}
                   </div>
-                  {!grave?.length && <p className="caption">None</p>}
+                  {!grave?.length && <p className="caption">Keine</p>}
                 </div>
               )}
             </Droppable>

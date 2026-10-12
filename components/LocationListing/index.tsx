@@ -1,7 +1,7 @@
 import { PlaceName } from "models";
 import React from "react";
 import styles from "styles/Location.module.scss";
-import { cleanName } from "utils/utils";
+import { locationLabel } from "lib/de";
 
 export function LocationListing({ location }: { location: PlaceName }) {
   const isBadge = /badge/gi.test(location);
@@ -10,7 +10,7 @@ export function LocationListing({ location }: { location: PlaceName }) {
     <td className={styles.listing}>
       <div className="flex items-center">
         {isBadge && <SingleBadge badge={location} />}
-        {cleanName(location)}
+        {locationLabel(location)}
       </div>
     </td>
   );

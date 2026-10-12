@@ -59,7 +59,7 @@ function SingleBadge({
     <Tippy
       content={
         <TooltipContent>
-          Double click to toggle {badge.replaceAll("_", " ")}
+          Doppelklick zum Umschalten: {badge.replaceAll("_", " ")}
         </TooltipContent>
       }
       delay={[500, 0]}

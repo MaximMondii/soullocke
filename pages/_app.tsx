@@ -5,26 +5,10 @@ import "../styles/juniper.scss";
 
 import firebase from "firebase";
 import firebaseConfig from "firebaseConfig";
-import mixpanel from "mixpanel-browser";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import posthog from "posthog-js";
-import { PostHogProvider } from "posthog-js/react";
 import React from "react";
-
-import { Analytics } from "@vercel/analytics/react";
-
-// Check that PostHog is client-side (used to handle Next.js SSR)
-if (typeof window !== "undefined") {
-  posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY || "", {
-    api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://app.posthog.com",
-    // Enable debug mode in development
-    loaded: (posthog) => {
-      if (process.env.NODE_ENV === "development") posthog.debug();
-    },
-  });
-}
 
 //- Firebase Setup
 let db: firebase.database.Database;
@@ -51,11 +35,6 @@ export const FirebaseContext: React.Context<{
 }> = React.createContext({});
 
 function MyApp({ Component, pageProps }: AppProps | any) {
-  React.useEffect(() => {
-    mixpanel.init("669064492edee6f09aca23f2ece2beed");
-    mixpanel.track("Visit site");
-  }, []);
-
   const router = useRouter();
   // Every public page is available without a trailing slash, and query
   // parameters do not change the content of our documentation pages. Emit a
@@ -63,21 +42,7 @@ function MyApp({ Component, pageProps }: AppProps | any) {
   // separate pages.
   const canonicalPath =
     router.asPath.split(/[?#]/u)[0].replace(/\/+$/u, "") || "/";
-  const canonicalUrl = `https://soullocke.vercel.app${canonicalPath}`;
-  React.useEffect(() => {
-    // Send this page view
-    posthog.capture("$pageview");
-
-    // Track page views
-    const handleRouteChange = () => posthog?.capture("$pageview");
-    router.events.on("routeChangeComplete", handleRouteChange);
-
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  const canonicalUrl = `https://soullocke.daxim.de${canonicalPath}`;
   return (
     <>
       <Head>
@@ -85,12 +50,9 @@ function MyApp({ Component, pageProps }: AppProps | any) {
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:url" content={canonicalUrl} key="og:url" />
       </Head>
-      <PostHogProvider client={posthog}>
-        <FirebaseContext.Provider value={{ db }}>
-          <Component {...pageProps} />
-        </FirebaseContext.Provider>
-        <Analytics />
-      </PostHogProvider>
+      <FirebaseContext.Provider value={{ db }}>
+        <Component {...pageProps} />
+      </FirebaseContext.Provider>
     </>
   );
 }

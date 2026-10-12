@@ -93,7 +93,7 @@ export function SearchableSelect<T>({
             );
           })}
           {filteredOptions.length === 0 && (
-            <p className="jnpr-searchableSelect-noResults">No Results</p>
+            <p className="jnpr-searchableSelect-noResults">Keine Treffer</p>
           )}
         </ul>
       }
@@ -118,7 +118,7 @@ export function SearchableSelect<T>({
           aria-activedescendant={
             !selectedOption ? undefined : `combobox-option-${selectedOptionIdx}`
           }
-          placeholder={placeholder || "Search..."}
+          placeholder={placeholder || "Suchen..."}
           disabled={disabled}
           value={
             searchValue === null ? selectedOption?.label || "" : searchValue

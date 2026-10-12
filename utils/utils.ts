@@ -1,5 +1,6 @@
 export function capitalize(str: string): string {
-  return str.replace(/\b\w/g, (match) => match.toUpperCase());
+  // Nicht \b\w: das behandelt Umlaute als Wortgrenze ("Südlich" -> "SüDlich")
+  return str.replace(/(^|\s)(\S)/g, (_m, space, char) => space + char.toUpperCase());
 }
 
 export function cleanName(name: string = "") {

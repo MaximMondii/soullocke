@@ -12,7 +12,8 @@ import { Plus, Search } from "react-feather";
 import styles from "styles/Box.module.scss";
 import fstyles from "styles/Filters.module.scss";
 import Box from "ui-box";
-import { capitalize, cleanName } from "utils/utils";
+import { locationLabel } from "lib/de";
+import { cleanName } from "utils/utils";
 
 export function BoxFilters({
   onChange,
@@ -46,14 +47,14 @@ export function BoxFilters({
           <Search size="1rem" />
           <input
             type="text"
-            placeholder="Search"
+            placeholder="Suchen"
             value={inputVal}
             onChange={handleSearch}
           />
         </div>
 
         <div className={styles.location}>
-          {capitalize(cleanName(latestLocation?.name || ""))}
+          {locationLabel(latestLocation?.name)}
         </div>
 
         <div className="flex items-center justify-end">
@@ -128,22 +129,23 @@ function AddPokemonModal({
   return (
     <Modal visible={visible} onCancel={onCancel}>
       <>
-        <h3 className="mt-1 mb-4">Add Pokémon</h3>
+        <h3 className="mt-1 mb-4">Pokémon hinzufügen</h3>
 
         <div className="flex flex-col gap-2">
           <label>
-            <span className="color-purple">*</span> Caught at:
+            <span className="color-purple">*</span> Gefangen bei:
           </label>
           <SearchableSelect
             options={[
               ...allLocations?.map((l) => ({
                 value: l.name,
-                label: capitalize(cleanName(l.name)),
+                label: locationLabel(l.name),
+                keywords: cleanName(l.name),
               })),
             ]}
             value={newLocation}
             onChange={(value?: string) => setLocation(value || "")}
-            placeholder="Add New Location"
+            placeholder="Neuen Ort hinzufügen"
             allowCustom
           />
         </div>
@@ -158,12 +160,12 @@ function AddPokemonModal({
                   updatePokemonName(index, value || "")
                 }
                 value={pokemonNames[index]}
-                placeholder="Select a Pokémon"
+                placeholder="Pokémon wählen"
                 options={pokemonOptions(allPokemon)}
               />
               <input
                 type="text"
-                placeholder="Nickname"
+                placeholder="Spitzname"
                 value={nicknames[index]}
                 onChange={(e) => updateNickname(index, e.target.value)}
               />
@@ -171,7 +173,7 @@ function AddPokemonModal({
           ))}
         </div>
         <div className="flex justify-end">
-          <button onClick={addNew}>Add</button>
+          <button onClick={addNew}>Hinzufügen</button>
         </div>
       </>
     </Modal>

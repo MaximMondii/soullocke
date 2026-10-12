@@ -1,6 +1,5 @@
 import classNames from "classnames";
-import mixpanel from "mixpanel-browser";
-import { Coffee, GitHub, Instagram, X } from "react-feather";
+import { GitHub, X } from "react-feather";
 import styles from "styles/WhatsNew.module.scss";
 
 import { Button } from "./ui-library/Button";
@@ -23,73 +22,58 @@ export function WhatsNew({
       />
 
       <div>
-        <h3>Hi there!</h3>
+        <h3>Hallo!</h3>
         <p>
-          Thanks for checking out Soullocke. If you have feedback or issues,{" "}
-          <a
-            href="https://github.com/jynnie/soullocke/discussions"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => mixpanel.track("Feedback button")}
-          >
-            let me know
-          </a>
-          .
+          Das ist eine deutsche Fassung des Soullocke-Trackers von jynnie. Das
+          Original findest du auf GitHub.
         </p>
         <div className="flex gap-4 center mt-4">
           <a
             className="border-0"
-            href="https://github.com/jynnie/soullocke/discussions"
+            href="https://github.com/jynnie/soullocke"
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => mixpanel.track("Github button")}
           >
             <GitHub />
-          </a>
-          <a
-            className="border-0"
-            href="https://ko-fi.com/jynnie"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => mixpanel.track("Coffee button")}
-          >
-            <Coffee />
-          </a>
-          <a
-            className="border-0"
-            href="https://www.instagram.com/jynniit/"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => mixpanel.track("IG button")}
-          >
-            <Instagram />
           </a>
         </div>
       </div>
 
       <div className="mt-16" />
 
-      <h3>What&apos;s new?</h3>
+      <h3>Was ist neu?</h3>
       <div className="flex flex-col gap-5">
         <div>
-          <h5>February 2023</h5>
-          <h4>Someone&apos;s PC</h4>
+          <h5>Diese Version</h5>
+          <h4>Deutsch</h4>
           <ul>
+            <li>🇩🇪 Pokémon- und Ortsnamen auf Deutsch, auch bei der Suche.</li>
             <li>
-              🎁 Introducing Box. Don&apos;t care about when things happen? Try
-              out simplified management in Box tab.
+              🎣 Ein verpasster Fang sperrt die Slots der anderen Spieler nicht
+              mehr.
             </li>
-            <li>❔ Edit Pokémon originally added with no information.</li>
-            <li>📍 Input custom location names.</li>
+            <li>🔒 Keine Tracker und keine Werbung.</li>
           </ul>
         </div>
         <div>
-          <h5>January 2023</h5>
+          <h5>Februar 2023</h5>
+          <h4>Someone&apos;s PC</h4>
+          <ul>
+            <li>
+              🎁 Neu: Box. Ist dir egal, wann etwas passiert? Probiere die
+              vereinfachte Verwaltung im Box-Tab.
+            </li>
+            <li>❔ Pokémon bearbeiten, die ohne Angaben hinzugefügt wurden.</li>
+            <li>📍 Eigene Fundortnamen eingeben.</li>
+          </ul>
+        </div>
+        <div>
+          <h5>Januar 2023</h5>
           <h4>Sootopolis Style</h4>
           <ul>
-            <li>🎨 Redesign Timeline and Summary views.</li>
-            <li>📝 Double click Pokémon information to edit in modals.</li>
-            <li>🔍 Smarter search.</li>
+            <li>🎨 Timeline und Übersicht neu gestaltet.</li>
+            <li>📝 Doppelklick auf Pokémon-Infos zum Bearbeiten im Dialog.</li>
+            <li>🔍 Bessere Suche.</li>
           </ul>
         </div>
       </div>

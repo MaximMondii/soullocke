@@ -3,7 +3,6 @@ import { Button } from "components/ui-library/Button";
 import { SearchableSelect } from "components/ui-library/SearchableSelect";
 import runId from "lib/random";
 import REGIONS from "lib/regions";
-import mixpanel from "mixpanel-browser";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { FirebaseContext } from "pages/_app";
@@ -11,6 +10,10 @@ import React from "react";
 import { MinusCircle, Plus } from "react-feather";
 import formStyles from "styles/Form.module.scss";
 import styles from "styles/Home.module.css";
+
+const REGION_LABELS: Record<string, string> = {
+  unova: "Einall (Unova)",
+};
 
 function NewRunPage() {
   const db = React.useContext(FirebaseContext)?.db;
@@ -56,7 +59,6 @@ function NewRunPage() {
       password: id,
       players: playersObj,
     });
-    mixpanel.track("New Run");
 
     router.push(`/run/${id}`);
   };
@@ -64,19 +66,19 @@ function NewRunPage() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>New Run | Soullocke – Soul-linked Nuzlocke Tracker</title>
+        <title>Neuer Run | Soullocke</title>
         <meta
           name="description"
-          content="Start a new soul-linked Nuzlocke run. Pick your game and region, add your trainers, and get a shareable link to track your run in real time."
+          content="Starte einen neuen Soul-Link-Nuzlocke-Run. Wähle Spiel und Region, trage die Trainer ein und teile den Link, um den Run live zu verfolgen."
         />
       </Head>
       <main style={{ marginTop: -120 }}>
-        <h2>New Run</h2>
+        <h2>Neuer Run</h2>
 
         <form className="flex flex-col gap-8" method="dialog">
           <div className="flex flex-col gap-2">
             <label className={formStyles.width76}>
-              Game <span className="color-purple">*</span>
+              Spiel <span className="color-purple">*</span>
             </label>
             <input
               name="game"
@@ -84,7 +86,7 @@ function NewRunPage() {
               className="grow-1"
               value={game}
               onChange={handleGameChange}
-              placeholder="i.e. Emerald"
+              placeholder="z.B. Smaragd"
             />
           </div>
 
@@ -93,11 +95,11 @@ function NewRunPage() {
               Region <span className="color-purple">*</span>
             </label>
             <SearchableSelect
-              placeholder="i.e. Hoenn"
+              placeholder="z.B. Hoenn"
               onChange={(value?: string) => setRegion(value || "")}
               options={REGIONS.map((r) => ({
                 value: r,
-                label: r[0].toUpperCase() + r.slice(1),
+                label: REGION_LABELS[r] ?? r[0].toUpperCase() + r.slice(1),
               }))}
               value={region}
             />
@@ -105,7 +107,7 @@ function NewRunPage() {
 
           <div className="flex flex-col gap-2">
             <div className="flex items-center justify-between">
-              <label>Players</label>
+              <label>Spieler</label>
               <Button
                 className="text icon"
                 onClick={() => setPlayers([...players, ""])}
@@ -115,7 +117,7 @@ function NewRunPage() {
             {players.map((player, index) => (
               <div className="flex items-center gap-4" key={index}>
                 <label className={cn(formStyles.width76, "shrink-0")}>
-                  Player {index + 1}{" "}
+                  Spieler {index + 1}{" "}
                   {index === 0 && <span className="color-purple">*</span>}
                 </label>
                 <input
@@ -139,7 +141,7 @@ function NewRunPage() {
           </div>
 
           <Button disabled={isDisabled} onClick={createNewRun}>
-            Create
+            Erstellen
           </Button>
         </form>
       </main>

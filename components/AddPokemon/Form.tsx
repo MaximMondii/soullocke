@@ -2,13 +2,14 @@ import classNames from "classnames";
 import cn from "classnames";
 import { Button } from "components/ui-library/Button";
 import { SearchableSelect } from "components/ui-library/SearchableSelect";
+import { pokemonLabel } from "lib/de";
 import { pokemonOptions } from "lib/pokemonOptions";
 import { RunContext } from "pages/run/[id]";
 import React from "react";
 
 function AddPokemonForm({
   defaultValues,
-  finishText = "Add",
+  finishText = "Hinzufügen",
   onFinish,
   onCancel,
   showCaughtCheckbox = true,
@@ -29,7 +30,7 @@ function AddPokemonForm({
   const [caught, setCaught] = React.useState(true);
 
   const handleFinish = () => {
-    if (pokemon) onFinish?.(pokemon, nickname || pokemon, caught);
+    if (pokemon) onFinish?.(pokemon, nickname || pokemonLabel(pokemon), caught);
 
     setPokemon(undefined);
     setNickname(undefined);
@@ -58,7 +59,7 @@ function AddPokemonForm({
       <SearchableSelect
         onChange={handlePokemonChange}
         value={pokemon}
-        placeholder="Select a Pokémon"
+        placeholder="Pokémon wählen"
         options={pokemonOptions(allPokemon)}
       />
 
@@ -68,7 +69,7 @@ function AddPokemonForm({
           type="text"
           onChange={handleNicknameChange}
           value={nickname}
-          placeholder="Nickname"
+          placeholder="Spitzname"
         />
       </div>
 
@@ -79,14 +80,14 @@ function AddPokemonForm({
             checked={caught}
             onChange={(evt) => setCaught(evt.target.checked)}
           />
-          <label onClick={handleCaughtChange}>Caught</label>
+          <label onClick={handleCaughtChange}>Gefangen</label>
         </div>
       )}
 
       <div className={cn("flex justify-end gap-1 pointer")}>
         {onCancel && (
           <Button className="outline" onClick={handleCancel}>
-            Cancel
+            Abbrechen
           </Button>
         )}
 

@@ -4,13 +4,13 @@ import { Button } from "components/ui-library/Button";
 import { Modal, ModalProps } from "components/ui-library/Modal";
 import { TimelineBullet } from "components/ui-library/TimelineBullet";
 import { useEditEvent } from "hooks/useEditEvent";
+import { locationLabel, pokemonLabel, pokemonLocationLabel } from "lib/de";
 import Pokeball from "lib/icons/Pokeball";
 import { EventType, IPokemon, PokemonLocation } from "models";
 import type { PokemonEvent } from "models";
 import React from "react";
 import { Edit, Frown, Inbox, Star, Users } from "react-feather";
 import styles from "styles/Event.module.scss";
-import { cleanName } from "utils/utils";
 
 interface ModifiedPokemonEvent extends PokemonEvent {
   locationName?: string;
@@ -27,7 +27,7 @@ function PokemonTimelineEvent({
   playerId: string;
   isLatestEvent?: boolean;
 }) {
-  const place = cleanName(event.locationName || event.location);
+  const place = locationLabel(event.locationName || event.location);
 
   const [isEditing, setIsEditing] = React.useState(false);
   const [isDeleting, setIsDeleting] = React.useState(false);
@@ -68,34 +68,36 @@ function PokemonTimelineEvent({
   let eventColor: string = "";
   if (event.type === EventType.catch) {
     eventDot = <Pokeball size={18} />;
-    eventDetails = `Caught on ${place}`;
+    eventDetails = `Gefangen bei ${place}`;
   } else if (event.type === EventType.moved) {
     eventColor = "var(--text-caption)";
     eventDot =
       event.details?.location === PokemonLocation.team ? <Users /> : <Inbox />;
-    eventDetails = `Moved to ${event.details?.location} while at ${place}`;
+    eventDetails = `Verschoben nach ${pokemonLocationLabel(
+      event.details?.location,
+    )} bei ${place}`;
   } else if (event.type === EventType.missed) {
     eventColor = "var(--red-primary)";
     eventDot = <Frown />;
-    eventDetails = `Missed on ${place}`;
+    eventDetails = `Verpasst bei ${place}`;
   } else if (event.type === EventType.defeated) {
     eventColor = "var(--red-primary)";
-    eventDetails = `Defeated at ${place}`;
+    eventDetails = `Besiegt bei ${place}`;
     eventDot = <Frown />;
   } else if (event.type === EventType.soulDeath) {
     eventColor = "var(--red-primary)";
     eventDot = <Frown />;
-    eventDetails = `Soul died at ${place}`;
+    eventDetails = `Soul-Link: gestorben bei ${place}`;
   } else if (event.type === EventType.soulMiss) {
     eventColor = "var(--red-primary)";
     eventDot = <Frown />;
-    eventDetails = `Soul missed at ${place}`;
+    eventDetails = `Soul-Link: Fang verpasst bei ${place}`;
   } else if (event.type === EventType.evolved) {
     eventColor = "var(--blue-primary)";
     eventDot = <Star />;
-    eventDetails = `Evolved into ${
-      event.details?.evolution || "?"
-    } at ${place}`;
+    eventDetails = `Entwickelt zu ${
+      pokemonLabel(event.details?.evolution) || "?"
+    } bei ${place}`;
   }
 
   if (isEditing) {
@@ -143,17 +145,18 @@ interface DeleteEventModalProps extends ModalProps {
 function DeleteEventModal(props: DeleteEventModalProps) {
   return (
     <Modal className={styles.modal} {...props}>
-      <p className="text-lg m-0">Are you sure you want to delete this event?</p>
+      <p className="text-lg m-0">Dieses Ereignis wirklich löschen?</p>
       <p className="my-2">
-        This only deletes this event for this Pokémon. Deleting this event won
-        {"'"}t change this or linked Pokémons{"'"} origin, name, or location.
+        Damit wird nur dieses Ereignis bei diesem Pokémon gelöscht. Fundort,
+        Name und Aufenthaltsort dieses Pokémon und der verlinkten Pokémon
+        bleiben unverändert.
       </p>
       <div className="flex justify-end gap-4">
         <Button className="outline" onClick={props?.onCancel as any}>
-          Cancel
+          Abbrechen
         </Button>
         <Button className="danger" onClick={props?.onDelete}>
-          Delete
+          Löschen
         </Button>
       </div>
     </Modal>

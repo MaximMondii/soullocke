@@ -1,8 +1,8 @@
 import { Button } from "components/ui-library/Button";
 import { Modal } from "components/ui-library/Modal";
 import { useLocationNotes } from "hooks/useLocationNotes";
+import { locationLabel } from "lib/de";
 import React, { useEffect } from "react";
-import { cleanName } from "utils/utils";
 
 function NotesModal({
   visible = false,
@@ -31,20 +31,20 @@ function NotesModal({
 
   return (
     <Modal {...{ visible, onCancel }}>
-      <p className="mt-0 text-lg capitalize">{cleanName(name.value)} Notes</p>
+      <p className="mt-0 text-lg capitalize">Notizen: {locationLabel(name.value)}</p>
       <textarea
         className="w-full"
-        placeholder="Place notes..."
+        placeholder="Notizen eintragen..."
         value={notes}
         onChange={handleChange}
       />
 
       <div className="mt-4 flex gap-2 justify-end items-center">
         <Button className="outline" key="cancel" onClick={onCancel}>
-          Cancel
+          Abbrechen
         </Button>
         <Button key="save" onClick={handleSave}>
-          Save
+          Speichern
         </Button>
       </div>
     </Modal>

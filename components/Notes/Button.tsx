@@ -9,7 +9,7 @@ function NotesButton({ onClick }: { onClick?: () => void }) {
       className={classNames(styles.listingNotesButton, "text no-underline")}
       {...{ onClick }}
     >
-      Notes
+      Notizen
     </Button>
   );
 }

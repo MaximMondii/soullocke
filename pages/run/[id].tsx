@@ -2,14 +2,11 @@ import RunHome from "components/RunHome";
 import { WhatsNew } from "components/WhatsNew";
 import { useAllBadges } from "hooks/useAllBadges";
 import { useAllPokemon } from "hooks/useAllPokemon";
-import { useMetrics } from "hooks/useMetrics";
 import { useRegion, useRegionData } from "hooks/useRegionData";
-import mixpanel from "mixpanel-browser";
 import { PokemonListApiData as ListPokemon } from "models";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Error from "pages/_error";
-import posthog from "posthog-js";
 import React from "react";
 import { HelpCircle } from "react-feather";
 import { ToastContainer } from "react-toastify";
@@ -36,16 +33,12 @@ function RunPage() {
 
   const [showWhatsNew, setShowWhatsNew] = React.useState(false);
   function help() {
-    mixpanel.track("Smile button");
-    posthog.capture("Open What's New");
     setShowWhatsNew(true);
   }
 
-  useMetrics("Run Page", id, { pageId: id });
-
   //* Components------------------------#07cf7f
   if (isRunNonexistent)
-    return <Error statusCode={404} title={`Hmm, we can't find run '${id}'`} />;
+    return <Error statusCode={404} title={`Hmm, wir finden den Run '${id}' nicht`} />;
 
   return (
     <RunContext.Provider value={{ allPokemon, id }}>

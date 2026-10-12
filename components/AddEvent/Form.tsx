@@ -1,3 +1,8 @@
+import {
+  EVENT_TYPE_LABELS,
+  locationLabel,
+  pokemonLocationLabel,
+} from "lib/de";
 import { pokemonOptions } from "lib/pokemonOptions";
 import cn from "classnames";
 import { Button } from "components/ui-library/Button";
@@ -92,16 +97,17 @@ function AddEventForm({
         // ]}
       >
         <label>
-          <span className="color-purple">*</span> At:
+          <span className="color-purple">*</span> Ort:
         </label>
         <SearchableSelect
           className="grow-1"
           onChange={(value) => setLocation(value)}
           value={location}
-          placeholder="Select the location of this event"
+          placeholder="Ort des Ereignisses wählen"
           options={timelineLocations.map((l) => ({
             value: l.key,
-            label: cleanName(l.name),
+            label: locationLabel(l.name),
+            keywords: cleanName(l.name),
           }))}
         />
       </div>
@@ -111,16 +117,16 @@ function AddEventForm({
         // rules={[{ required: true, message: "Please choose event type" }]}
       >
         <label>
-          <span className="color-purple">*</span> We:
+          <span className="color-purple">*</span> Ereignis:
         </label>
         <SearchableSelect
           className="grow-1"
           onChange={(value) => setEventType(value)}
           value={eventType}
-          placeholder="Select an Event Type"
+          placeholder="Ereignisart wählen"
           options={eventTypes.map((t) => ({
             value: EVENT_NAME_TO_TYPE[t],
-            label: t,
+            label: EVENT_TYPE_LABELS[t] ?? t,
           }))}
         />
       </div>
@@ -136,15 +142,15 @@ function AddEventForm({
           // ]}
         >
           <label>
-            <span className="color-purple">*</span> To:
+            <span className="color-purple">*</span> Nach:
           </label>
           <SearchableSelect
             className="grow-1"
             onChange={(value) => setPokemonLocation(value)}
             value={pokemonLocation}
-            placeholder="Select new location"
+            placeholder="Neuen Platz wählen"
             options={pokemonLocations.map((l) => ({
-              label: l,
+              label: pokemonLocationLabel(l),
               value: l,
             }))}
           />
@@ -162,13 +168,13 @@ function AddEventForm({
           // ]}
         >
           <label>
-            <span className="color-purple">*</span> Into:
+            <span className="color-purple">*</span> Zu:
           </label>
           <SearchableSelect
             className="grow-1"
             onChange={(value) => setEvolution(value)}
             value={evolution}
-            placeholder="Select evolution"
+            placeholder="Entwicklung wählen"
             options={pokemonOptions(allPokemon)}
           />
         </div>
@@ -176,10 +182,10 @@ function AddEventForm({
 
       <div className={"flex gap-2 justify-end"}>
         <Button className="outline" onClick={handleCancel}>
-          Cancel
+          Abbrechen
         </Button>
 
-        <Button onClick={handleFinish}>Add</Button>
+        <Button onClick={handleFinish}>Hinzufügen</Button>
       </div>
     </form>
   );

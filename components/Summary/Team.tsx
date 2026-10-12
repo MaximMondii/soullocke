@@ -23,7 +23,7 @@ export function Team({
 }) {
   return (
     <div className={styles.team}>
-      <div className={styles.playerName}>{player?.name ?? "Unknown"}</div>
+      <div className={styles.playerName}>{player?.name ?? "Unbekannt"}</div>
       {pokemonTeam.map((pokemon, i) => (
         <div
           key={i}

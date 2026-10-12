@@ -93,7 +93,7 @@ function TimelineGrid({
     );
 
     const data = await setTimelineOrder(items);
-    toast("Timeline order change saved", {
+    toast("Reihenfolge der Timeline gespeichert", {
       closeOnClick: true,
       pauseOnHover: false,
       draggable: true,
@@ -110,12 +110,12 @@ function TimelineGrid({
         <Box is="table" className={styles.table}>
           <thead>
             <tr>
-              <th className="text-left">Origin</th>
+              <th className="text-left">Fundort</th>
               {playerArr?.map((p) => (
                 <th key={p.id}>{p.name}</th>
               ))}
-              <th className="text-left">Nicknames</th>
-              <th className="text-left">Location</th>
+              <th className="text-left">Spitznamen</th>
+              <th className="text-left">Verbleib</th>
               <th></th>
             </tr>
           </thead>

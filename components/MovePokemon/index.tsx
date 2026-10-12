@@ -10,6 +10,7 @@ import { PlaceName, PokemonLocation } from "models";
 import React, { useEffect } from "react";
 import styles from "styles/Form.module.scss";
 import { getLastItem } from "utils/getLastItem";
+import { locationLabel, pokemonLocationLabel } from "lib/de";
 import { cleanName } from "utils/utils";
 
 export function MovePokemon({
@@ -58,7 +59,7 @@ export function MovePokemon({
 
   return (
     <Modal {...{ visible, onCancel }}>
-      <p className="text-lg mt-0 capitalize">Move {pokemonMovingNames}?</p>
+      <p className="text-lg mt-0 capitalize">{pokemonMovingNames} verschieben?</p>
 
       <div className="flex flex-col center">
         <PokemonGroup marginBottom={12}>
@@ -76,14 +77,15 @@ export function MovePokemon({
           // ]}
         >
           <label>
-            <span className="color-purple">*</span> At
+            <span className="color-purple">*</span> Ort
           </label>
           <SearchableSelect
             onChange={(value) => setLocation(value || "")}
             value={location}
-            placeholder="Select the location of this event"
+            placeholder="Ort des Ereignisses wählen"
             options={timelineLocations?.map((l) => ({
-              label: cleanName(l.name),
+              label: locationLabel(l.name),
+              keywords: cleanName(l.name),
               value: l.key,
             }))}
           />
@@ -99,14 +101,14 @@ export function MovePokemon({
           // ]}
         >
           <label>
-            <span className="color-purple">*</span> To
+            <span className="color-purple">*</span> Nach
           </label>
           <SearchableSelect
             onChange={(value) => setPokemonLocation(value)}
             value={pokemonLocation}
-            placeholder="Select new location"
+            placeholder="Neuen Platz wählen"
             options={pokemonLocations.map((l) => ({
-              label: cleanName(l),
+              label: pokemonLocationLabel(l),
               value: l,
             }))}
           />
@@ -119,9 +121,9 @@ export function MovePokemon({
           )}
         >
           <Button className="outline" onClick={handleCancel}>
-            Cancel
+            Abbrechen
           </Button>
-          <Button onClick={handleFinish}>Move</Button>
+          <Button onClick={handleFinish}>Verschieben</Button>
         </div>
       </form>
     </Modal>

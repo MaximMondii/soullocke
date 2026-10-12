@@ -44,7 +44,7 @@ function RunHome({ region, allBadges, allLocations }: Props) {
 
       <div className={styles.content}>
         <div className={styles.tabContainer}>
-          {["Timeline", "Box", "Summary"].map((t, k) => (
+          {["Timeline", "Box", "Übersicht"].map((t, k) => (
             <label
               key={k}
               className={classNames(styles.tab, {

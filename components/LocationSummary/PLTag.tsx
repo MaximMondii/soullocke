@@ -1,4 +1,5 @@
 import cn from "classnames";
+import { pokemonLocationLabel } from "lib/de";
 import { PokemonLocation } from "models";
 import React from "react";
 import styles from "styles/Location.module.scss";
@@ -13,7 +14,7 @@ export function LocationTag({
   return (
     <div className={cn(className, styles.tag, styles[pokemonLocation])}>
       <sup />
-      {pokemonLocation}
+      {pokemonLocationLabel(pokemonLocation)}
     </div>
   );
 }

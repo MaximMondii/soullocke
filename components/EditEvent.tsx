@@ -1,3 +1,8 @@
+import {
+  EVENT_TYPE_LABELS,
+  locationLabel,
+  pokemonLocationLabel,
+} from "lib/de";
 import { pokemonOptions } from "lib/pokemonOptions";
 import cn from "classnames";
 import { Button } from "components/ui-library/Button";
@@ -107,16 +112,17 @@ function EditEvent({
         // ]}
       >
         <label>
-          <span className="color-purple">*</span> At:
+          <span className="color-purple">*</span> Ort:
         </label>
         <SearchableSelect
           className="grow-1"
           onChange={(value) => setLocationKey(value)}
           value={locationKey}
-          placeholder="Select the location of this event"
+          placeholder="Ort des Ereignisses wählen"
           options={timelineLocations.map((l) => ({
             value: l.key,
-            label: cleanName(l.name),
+            label: locationLabel(l.name),
+            keywords: cleanName(l.name),
           }))}
         />
       </div>
@@ -126,16 +132,16 @@ function EditEvent({
         // rules={[{ required: true, message: "Please choose event type" }]}
       >
         <label>
-          <span className="color-purple">*</span> We:
+          <span className="color-purple">*</span> Ereignis:
         </label>
         <SearchableSelect
           className="grow-1"
           onChange={(value) => setEventType(value)}
           value={eventType}
-          placeholder="Select an Event Type"
+          placeholder="Ereignisart wählen"
           options={eventTypes.map((t) => ({
             value: EVENT_NAME_TO_TYPE[t],
-            label: t,
+            label: EVENT_TYPE_LABELS[t] ?? t,
           }))}
         />
       </div>
@@ -151,16 +157,16 @@ function EditEvent({
           // ]}
         >
           <label>
-            <span className="color-purple">*</span> To:
+            <span className="color-purple">*</span> Nach:
           </label>
           <SearchableSelect
             className="grow-1"
             onChange={(value) => setPokemonLocation(value)}
             value={pokemonLocation}
-            placeholder="Select new location"
+            placeholder="Neuen Platz wählen"
             options={pokemonLocations.map((l) => ({
               value: l,
-              label: l,
+              label: pokemonLocationLabel(l),
             }))}
           />
         </div>
@@ -177,36 +183,36 @@ function EditEvent({
           // ]}
         >
           <label>
-            <span className="color-purple">*</span> Into:
+            <span className="color-purple">*</span> Zu:
           </label>
           <SearchableSelect
             className="grow-1"
             onChange={(value) => setEvolution(value)}
             value={evolution}
-            placeholder="Select evolution"
+            placeholder="Entwicklung wählen"
             options={pokemonOptions(allPokemon)}
           />
         </div>
       )}
 
       <p className="caption">
-        *Warning: Editing or deleting this event does not affect events of
-        linked Pokémon.{" "}
+        *Achtung: Beim Bearbeiten oder Löschen dieses Ereignisses bleiben die
+        Ereignisse der verlinkten Pokémon unverändert.{" "}
         {!isLatestEvent &&
-          "Nor will it automatically update current Pokémon location."}
+          "Auch der aktuelle Aufenthaltsort des Pokémon wird nicht automatisch angepasst."}
       </p>
 
       <div className={"flex gap-2 justify-end"}>
         <Button className="outline" onClick={handleCancel}>
-          Cancel
+          Abbrechen
         </Button>
 
         <Button className="outline danger" onClick={handleDelete}>
-          Delete
+          Löschen
         </Button>
 
         <Button disabled={isDisabled} onClick={handleFinish}>
-          Save
+          Speichern
         </Button>
       </div>
     </form>

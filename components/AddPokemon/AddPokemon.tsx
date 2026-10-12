@@ -47,7 +47,7 @@ export function AddPokemon({
       onClickOutside={() => setShowForm(false)}
     >
       <div className="flex center">
-        <Tippy content={<TooltipContent content="Add Pokemon" />}>
+        <Tippy content={<TooltipContent content="Pokémon hinzufügen" />}>
           <div>
             <Button
               className="subtle outline icon"

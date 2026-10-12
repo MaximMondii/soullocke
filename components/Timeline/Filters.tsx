@@ -71,7 +71,7 @@ function TimelineFilters({ onChange }: { onChange: (val: any) => void }) {
         <Search size="1rem" />
         <input
           type="text"
-          placeholder="Search"
+          placeholder="Suchen"
           value={inputVal}
           onChange={handleSearch}
         />
@@ -89,7 +89,7 @@ function TimelineFilters({ onChange }: { onChange: (val: any) => void }) {
             className="uppercase cursor-pointer"
             onClick={() => handleBadge()}
           >
-            Badge
+            Orden
           </label>
         </div>
 
@@ -134,7 +134,7 @@ function TimelineFilters({ onChange }: { onChange: (val: any) => void }) {
             className="uppercase cursor-pointer"
             onClick={() => handleDaycare()}
           >
-            Daycare
+            Pension
           </label>
         </div>
 
@@ -149,7 +149,7 @@ function TimelineFilters({ onChange }: { onChange: (val: any) => void }) {
             className="uppercase cursor-pointer"
             onClick={() => handleGrave()}
           >
-            Grave
+            Grab
           </label>
         </div>
       </div>

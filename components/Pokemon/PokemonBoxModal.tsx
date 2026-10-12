@@ -8,7 +8,8 @@ import { useBackfillPokemons } from "hooks/useBackfillPokemon";
 import { usePlayersArray } from "hooks/usePlayersArray";
 import { PokemonLocation } from "models";
 import styles from "styles/Pokemon.module.scss";
-import { capitalize, cleanName } from "utils/utils";
+import { locationLabel, pokemonLabel } from "lib/de";
+import { cleanName } from "utils/utils";
 
 export function PokemonBoxModal({
   data,
@@ -40,7 +41,7 @@ export function PokemonBoxModal({
     >
       <>
         <div className="flex gap-4 justify-center items-center mb-4">
-          Caught in {capitalize(cleanName(data.location.name || "?"))}
+          Gefangen bei {locationLabel(data.location.name || "?")}
           <PLTag
             className={styles.modalHeaderTag}
             pokemonLocation={pokemons[0]?.location}
@@ -55,13 +56,14 @@ export function PokemonBoxModal({
 
             <div className="flex flex-col gap-1">
               <h4 className="italic">
-                {players.find((p) => p.id === pokemon.playerId)?.name}&apos;s
+                Pokémon von{" "}
+                {players.find((p) => p.id === pokemon.playerId)?.name}
               </h4>
 
               <EditableText
                 display={
                   <h3 className="capitalize">
-                    {cleanName(pokemon?.nickname) || "Unspecified Nickname"}
+                    {cleanName(pokemon?.nickname) || "Kein Spitzname"}
                   </h3>
                 }
                 value={cleanName(pokemon?.nickname)}
@@ -77,10 +79,10 @@ export function PokemonBoxModal({
               <EditablePokemon
                 display={
                   <h4 className="pb-2">
-                    {cleanName(pokemon?.name) || "Unspecified Pokémon"}
+                    {pokemonLabel(pokemon?.name) || "Kein Pokémon angegeben"}
                   </h4>
                 }
-                value={cleanName(pokemon?.name)}
+                value={pokemon?.name}
                 onChange={(name?: string) =>
                   name &&
                   handleFinish(

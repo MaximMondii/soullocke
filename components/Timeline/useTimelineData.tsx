@@ -1,5 +1,6 @@
 import { usePlayersArray } from "hooks/usePlayersArray";
 import { useRunChild } from "hooks/useRun";
+import { pokemonLabel } from "lib/de";
 import { EventType, IPokemon, PokemonEvent, Run, Timeline } from "models";
 import { getPokemonByOrigin } from "utils/getPokemonByOrigin";
 import { getPokemonLocationByOrigin } from "utils/getPokemonLocationByOrigin";
@@ -48,13 +49,15 @@ export function useTimelineData() {
 
 function makePokemonNameString(acc: string, p: IPokemon | null): string {
   if (!p) return acc;
-  let newNameString = `${acc} ${p.name} ${p.nickname}`;
+  let newNameString = `${acc} ${p.name} ${pokemonLabel(p.name)} ${p.nickname}`;
 
   const events: PokemonEvent[] = Object.values(p.events || {});
   for (const e of events) {
     if (e?.type === EventType.evolved) {
       const evolution = e.details?.evolution;
-      if (evolution) newNameString += ` ${evolution}`;
+      if (evolution) {
+        newNameString += ` ${evolution} ${pokemonLabel(evolution)}`;
+      }
     }
   }
   return newNameString;

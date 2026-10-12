@@ -7,6 +7,7 @@ import { useTimelineLocations } from "hooks/useTimelineLocations";
 import { IPokemon, PokemonLocation } from "models";
 import React from "react";
 import styles from "styles/Pokemon.module.scss";
+import { pokemonLabel } from "lib/de";
 import { cleanName } from "utils/utils";
 
 import { EditablePokemon } from "../ui-library/EditablePokemon";
@@ -67,7 +68,7 @@ function PokemonModal({
           <EditableText
             display={
               <h3 className="capitalize">
-                {cleanName(pokemon?.nickname) || "Unspecified Nickname"}
+                {cleanName(pokemon?.nickname) || "Kein Spitzname"}
               </h3>
             }
             value={cleanName(pokemon?.nickname)}
@@ -76,10 +77,10 @@ function PokemonModal({
           <EditablePokemon
             display={
               <h4 className="pb-2">
-                {cleanName(pokemon?.name) || "Unspecified Pokémon"}
+                {pokemonLabel(pokemon?.name) || "Kein Pokémon angegeben"}
               </h4>
             }
-            value={cleanName(pokemon?.name)}
+            value={pokemon?.name}
             onChange={(name?: string) =>
               name && handleFinish(name, pokemon?.nickname)
             }

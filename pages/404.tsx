@@ -5,7 +5,7 @@ function Error() {
     <div className={styles.errorBox}>
       <div>
         <h1 className={styles.statusCode}>{404}</h1>
-        <p className={styles.title}>This page could not be found</p>
+        <p className={styles.title}>Diese Seite wurde nicht gefunden</p>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import PokemonImage from "components/PokemonImage";
 import { Data } from "components/Timeline/Timeline";
 import React from "react";
 import styles from "styles/Box.module.scss";
+import { locationLabel } from "lib/de";
 import { cleanName } from "utils/utils";
 
 export function TeamPokemon({ data }: { data: Data }) {
@@ -23,7 +24,7 @@ export function TeamPokemon({ data }: { data: Data }) {
 
       <div className={styles.pokemon} onClick={handleOpenModal}>
         <div className="flex-grow">
-          <div className="capitalize">{cleanName(data.location.name)}</div>
+          <div className="capitalize">{locationLabel(data.location.name)}</div>
           <div className={styles.name}>
             {cleanName(data.pokemon.map((p) => p.nickname || "?").join(" & "))}
           </div>

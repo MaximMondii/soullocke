@@ -27,7 +27,7 @@ export function EditablePokemon({
       <SearchableSelect
         onChange={handlePokemonChange}
         value={editValue}
-        placeholder="Select a Pokémon"
+        placeholder="Pokémon wählen"
         options={pokemonOptions(allPokemon)}
       />
       <Button

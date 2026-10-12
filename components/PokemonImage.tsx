@@ -1,3 +1,4 @@
+import { pokemonLabel } from "lib/de";
 import { EventType, IPokemon, PokemonApiData } from "models";
 import React from "react";
 import Box from "ui-box";
@@ -34,7 +35,7 @@ export function PokemonImage({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pokemon.name, pokemonName, evolutionEvents.length, updateSrc]);
 
-  if (!src) return <>{pokemonName}</>;
+  if (!src) return <>{pokemon?.name ? pokemonLabel(pokemon.name) : "?"}</>;
   return <Box is="img" alt={pokemonName} src={src} {...props} />;
 }
 

@@ -26,7 +26,7 @@ export function AddEvent({ pokemon }: { pokemon: IPokemon }) {
     <TimelineBullet dot={<PlusCircle size={16} />}>
       {!showForm && (
         <Button className="outline" onClick={toggleForm}>
-          Add Event
+          Ereignis hinzufügen
         </Button>
       )}
 

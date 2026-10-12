@@ -3,24 +3,23 @@ import Document, { Head, Html, Main, NextScript } from "next/document";
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en">
+      <Html lang="de">
         <Head>
           <meta
             name="og:title"
             property="og:title"
-            content="Soullocke: Pokémon Soul-link Nuzlocke Tracker"
+            content="Soullocke: Soul-Link-Nuzlocke-Tracker"
           />
           <meta
             name="og:description"
-            content="Soullocke (or soul-linked Nuzlocke) Tracker for encounters and progress. All mainline Pokémon games (Sapphire, Emerald, Diamond, Pearl, Black, White, Sword, Shield, etc). Works best for two trainers, but can support any number in a run."
+            content="Soullocke (Soul-Link-Nuzlocke) Tracker für Begegnungen und Fortschritt. Alle Hauptspiele der Pokémon-Reihe. Am besten für zwei Trainer, geht aber mit beliebig vielen."
           />
           <meta
             property="og:image"
-            content="https://soullocke.vercel.app/clip.png"
+            content="https://soullocke.daxim.de/clip.png"
           />
 
           <meta name="twitter:card" content="summary" />
-          <meta name="twitter:creator" content="@jynniit" />
 
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
@@ -32,8 +31,6 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&family=Teko&display=swap"
             rel="stylesheet"
           />
-          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3217433846470620"
-            crossOrigin="anonymous"></script>
         </Head>
         <body>
           <Main />

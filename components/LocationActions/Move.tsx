@@ -38,7 +38,7 @@ export function Move({
         className={classNames("text no-underline", styles.listingMoveButton)}
         onClick={() => setShowModal(true)}
       >
-        Move
+        Verschieben
       </Button>
     </>
   );

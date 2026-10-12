@@ -1,3 +1,4 @@
+import { locationLabel } from "lib/de";
 import React from "react";
 import styles from "styles/Timeline.module.scss";
 
@@ -40,5 +41,8 @@ function matchesPokemonName(d: Data, filters: Filter): boolean {
 
 function matchesLocationName(d: Data, filters: Filter): boolean {
   const searchTerm = filters.searchTerm?.toLowerCase();
-  return d.location.name?.toLowerCase().includes(searchTerm);
+  return (
+    d.location.name?.toLowerCase().includes(searchTerm) ||
+    locationLabel(d.location.name).toLowerCase().includes(searchTerm)
+  );
 }
