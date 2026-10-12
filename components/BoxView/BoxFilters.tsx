@@ -1,3 +1,4 @@
+import { pokemonOptions } from "lib/pokemonOptions";
 import { Button } from "components/ui-library/Button";
 import { Modal } from "components/ui-library/Modal";
 import { SearchableSelect } from "components/ui-library/SearchableSelect";
@@ -158,10 +159,7 @@ function AddPokemonModal({
                 }
                 value={pokemonNames[index]}
                 placeholder="Select a Pokémon"
-                options={allPokemon.map((p) => ({
-                  value: p.name,
-                  label: p.name,
-                }))}
+                options={pokemonOptions(allPokemon)}
               />
               <input
                 type="text"

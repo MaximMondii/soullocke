@@ -2,6 +2,7 @@ import classNames from "classnames";
 import cn from "classnames";
 import { Button } from "components/ui-library/Button";
 import { SearchableSelect } from "components/ui-library/SearchableSelect";
+import { pokemonOptions } from "lib/pokemonOptions";
 import { RunContext } from "pages/run/[id]";
 import React from "react";
 
@@ -58,7 +59,7 @@ function AddPokemonForm({
         onChange={handlePokemonChange}
         value={pokemon}
         placeholder="Select a Pokémon"
-        options={allPokemon.map((p) => ({ value: p.name, label: p.name }))}
+        options={pokemonOptions(allPokemon)}
       />
 
       <div className="w-full">

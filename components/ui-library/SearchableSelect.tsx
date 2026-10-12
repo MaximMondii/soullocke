@@ -8,6 +8,8 @@ import Tippy from "@tippyjs/react";
 interface Option {
   value: any;
   label: string;
+  /** Zusätzliche Suchbegriffe (werden nicht angezeigt) */
+  keywords?: string;
 }
 
 interface SearchableSelectProps<T> {
@@ -189,8 +191,13 @@ export function useSearchableSelect<T>(
     if (!search) return true;
 
     // All space separated search terms need to match the label somewhere
-    const searchTerms = search.toLowerCase().split(" ");
-    const label = o.label.toLowerCase();
+    const normalize = (s: string) =>
+      s
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+    const searchTerms = normalize(search).split(" ").filter(Boolean);
+    const label = normalize(`${o.label} ${o.keywords ?? ""}`);
 
     let isMatching = true;
     for (const term of searchTerms) {

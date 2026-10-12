@@ -140,7 +140,8 @@ export function useAddEvent(
         location: PokemonLocation.box,
       };
     } else {
-      soulDeath(actingPokemonOrigin, true);
+      // Kein soulDeath mehr: ein verpasster Fang sperrt die Slots der
+      // anderen Spieler nicht, sie können weiterhin eintragen.
       pokemon = {
         playerId: actingPlayerId,
         origin: actingPokemonOrigin,

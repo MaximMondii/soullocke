@@ -1,5 +1,6 @@
 import { Button } from "components/ui-library/Button";
 import { SearchableSelect } from "components/ui-library/SearchableSelect";
+import { pokemonOptions } from "lib/pokemonOptions";
 import { RunContext } from "pages/run/[id]";
 import React, { useState } from "react";
 import { Check, X } from "react-feather";
@@ -27,7 +28,7 @@ export function EditablePokemon({
         onChange={handlePokemonChange}
         value={editValue}
         placeholder="Select a Pokémon"
-        options={allPokemon.map((p) => ({ value: p.name, label: p.name }))}
+        options={pokemonOptions(allPokemon)}
       />
       <Button
         icon={<X />}

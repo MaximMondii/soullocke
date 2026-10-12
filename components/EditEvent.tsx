@@ -1,3 +1,4 @@
+import { pokemonOptions } from "lib/pokemonOptions";
 import cn from "classnames";
 import { Button } from "components/ui-library/Button";
 import { SearchableSelect } from "components/ui-library/SearchableSelect";
@@ -183,10 +184,7 @@ function EditEvent({
             onChange={(value) => setEvolution(value)}
             value={evolution}
             placeholder="Select evolution"
-            options={allPokemon?.map((p) => ({
-              label: p.name,
-              value: p.name,
-            }))}
+            options={pokemonOptions(allPokemon)}
           />
         </div>
       )}
